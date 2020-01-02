@@ -24,7 +24,7 @@ public class DragonRealm {
     System.out.println("You approach the cave...");
     TimeUnit.SECONDS.sleep(3);
     System.out.println("It is dark and spooky...");
-    TimeUnit.SECONDS.sleep(3);
+    TimeUnit.SECONDS.sleep(2);
     System.out.print("A large dragon jumps out in front of you! He opens his jaws and...");
     TimeUnit.SECONDS.sleep(2);
     if (chosenCave == friendlyCave) {
