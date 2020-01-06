@@ -7,17 +7,21 @@ public class HangmanSource {
     Scanner fileScan = new Scanner(file);
     StringBuilder sb = new StringBuilder();
 
-    //String secretWord;
+    String secretWord;
 
-    //int secret = numgen.nextInt(wordList.length);
+    int secret = numgen.nextInt(wordList.length);
 
-    public HangmanSource() { }
+    public HangmanSource() {
+        secretWord = wordList[secret];
+        String[] wordList = list();
+    }
 
-    public void list() throws Exception {
+    public String[] list() throws Exception {
         while (fileScan.hasNext()) {
             sb.append(fileScan.nextLine());
+            sb.append("\n");
         }
-        String[] wordList = sb.toString().split(" ");
+        return sb.toString().split(" ");
     }
 
     public static void printList() {
@@ -25,9 +29,5 @@ public class HangmanSource {
             System.out.println(wordList[i]);
         }
     }
-
-    //public Hangman() {
-    //    secretWord = wordList[secret];
-    //}
 
 }
