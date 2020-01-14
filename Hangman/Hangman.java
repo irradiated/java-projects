@@ -11,8 +11,9 @@ public class Hangman {
     HangmanSource hangman = new HangmanSource();
 
     String secret, playAgain;
-    int secretLen;
     boolean gameOver;
+    int count = 0;
+    String[] pics = hangman.getPics();
 
     while (fileScan.hasNext()) {
         sb.append(fileScan.nextLine());
@@ -24,13 +25,17 @@ public class Hangman {
 
     do {
       secret = hangman.getWord(wordList);
-      char[] rightLetters = hangman.correctLetters(secret);
+      char[] wordArray = hangman.secretArray(secret);
 
       while (gameOver == false) {
-        hangman.displayBoard(secret, rightLetters, );
+        char[] correctGuesses = new char[secret.length()];
+        char[] wrongGuesses = new char[pics.length];
+        alreadyGuessed = new char[count];
+        hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
+        guess = hangman.getGuess(alreadyGuessed);
       }
 
-      System.out.print("\nPlay again? ");
+      System.out.print("\nPlay again? Yes or No: ");
       playAgain = scan.nextLine();
     } while (playAgain.equalsIgnoreCase("yes"));
 
