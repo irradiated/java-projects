@@ -59,8 +59,12 @@ public class HangmanSource {
       return secretWord;
     }
 
-    //public void displayBoard(String theWord, correctLetters, missedLetters) {
-
-    //}
+    public void displayBoard(String theWord, char[] correctLetters, char[] missedLetters) {
+      System.out.println(PICS[missedLetters.length]);
+      System.out.print("Missed letters: ");
+      for (char m : missedLetters) {
+        System.out.print(m);
+      }
+    }
 
 }

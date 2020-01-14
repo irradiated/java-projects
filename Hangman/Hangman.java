@@ -20,15 +20,13 @@ public class Hangman {
     }
     String[] wordList = sb.toString().split("\n");
 
-    System.out.println("Welcome to hAnGmAn!");
+    System.out.println("H_A_N_G_M_A_N \nby Dakota Flath");
 
     do {
       secret = hangman.getRandomWord(wordList);
       secretLen = secret.length();
       while (gameOver == false) {
-        for (int i = 0; i < secretLen; i++) {
-          System.out.print("_ ");
-        }
+        hangman.displayBoard();
       }
 
       System.out.print("\nPlay again? ");
