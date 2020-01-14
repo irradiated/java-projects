@@ -4,6 +4,7 @@ import java.io.*;
 public class HangmanSource {
     Random numgen = new Random();
     String secretWord;
+    Scanner scan = new Scanner(System.in);
 
     final String[] PICS ={"    +---+\n"
                   + "        |\n"
@@ -73,30 +74,34 @@ public class HangmanSource {
       System.out.print("Missed letters: ");
 
       for (char m : missedLetters) {  System.out.print(m);  }
-      for (int i = 0; i < theWord.length(); i++) {  blanks[i] = "_";  }
-      for (int i = 0; i < theWord.length(); i++) {
-        if (correctLetters[i].equalsIgnoreCase(theWord[i])) {  blanks[i] = correctLetters[i]  }
+      for (int i = 0; i < theWord.length; i++) {  blanks[i] = '_';  }
+      for (int i = 0; i < theWord.length; i++) {
+        if (correctLetters[i].equalsIgnoreCase(theWord[i])) {  blanks[i] = correctLetters[i];  }
       }
-      for (int i = 0; i < theWord.length; i++) {  System.out.println(blanks[i]) }
+      for (int i = 0; i < theWord.length; i++) {  System.out.println(blanks[i]); }
     }
 
     public String getGuess(char[] alreadyGuessed) {
       while (true) {
         System.out.print("Guess a letter: ");
         String guess = scan.nextLine();
+
         if (guess.length() != 1) {
           System.out.println("Only single letter guesses are accepted! Please guess again.");
         }
+
+        else if (((char)guess <= 'a' || (char)guess >= 'z') || ((char)guess <= 'A' || (char)guess >= 'Z')) {
+          System.out.println("That was not a letter. Try again!");
+        }
+
+        else {
+          return guess.toLowerCase();
+        }
+
         for (int i = 0; i < alreadyGuessed.length; i++) {
           if (alreadyGuessed[i] == guess) {
             System.out.println("You have already guessed that letter, try again!");
           }
-        }
-        else if ((guess <= 'a' || guess >= 'z') || (guess <= 'A' || guess >= 'Z')) {
-          System.out.println("That was not a letter. Try again!");
-        }
-        else {
-          return guess.toLowerCase();
         }
       }
     }

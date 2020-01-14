@@ -10,10 +10,12 @@ public class Hangman {
     StringBuilder sb = new StringBuilder();
     HangmanSource hangman = new HangmanSource();
 
-    String secret, playAgain;
+    String secret, playAgain, guess;
     boolean gameOver;
     int count = 0;
     String[] pics = hangman.getPics();
+    playAgain = "yes";
+    gameOver = false;
 
     while (fileScan.hasNext()) {
         sb.append(fileScan.nextLine());
@@ -30,9 +32,12 @@ public class Hangman {
       while (gameOver == false) {
         char[] correctGuesses = new char[secret.length()];
         char[] wrongGuesses = new char[pics.length];
-        alreadyGuessed = new char[count];
-        hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
-        guess = hangman.getGuess(alreadyGuessed);
+        char[] alreadyGuessed = new char[count];
+        while ((wrongGuesses.length < pics.length) || (correctGuesses.length < secret.length())) {
+          hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
+          guess = hangman.getGuess(alreadyGuessed);
+        }
+
       }
 
       System.out.print("\nPlay again? Yes or No: ");
