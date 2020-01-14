@@ -3,31 +3,64 @@ import java.io.*;
 
 public class HangmanSource {
     Random numgen = new Random();
-    File file = new File("E:\\coding\\java\\java-projects\\Hangman\\wordlist.txt");
-    Scanner fileScan = new Scanner(file);
-    StringBuilder sb = new StringBuilder();
-
     String secretWord;
 
-    int secret = numgen.nextInt(wordList.length);
+    final String[] PICS ={"    +---+\n"
+                  + "        |\n"
+                  + "        |\n"
+                  + "        |\n"
+                  + "       ===\n",
+
+                    "   +---+\n"
+                  + "   O    |\n"
+                  + "        |\n"
+                  + "        |\n"
+                  + "       ===\n",
+
+                    "   +---+\n"
+                  + "   O   |\n"
+                  + "   |   |\n"
+                  + "       |\n"
+                  + "      ===\n",
+
+                    "   +---+\n"
+                  + "   O   |\n"
+                  + "  /|   |\n"
+                  + "       |\n"
+                  + "      ===\n",
+
+                    "   +---+\n"
+                  + "   O   |\n"
+                  + "  /|\\  |\n"
+                  + "       |\n"
+                  + "      ===\n",
+
+                    "   +---+\n"
+                  + "   O   |\n"
+                  + "  /|\\  |\n"
+                  + "  /    |\n"
+                  + "      ===\n",
+
+                    "   +---+\n"
+                  + "   O   |\n"
+                  + "  /|\\  |\n"
+                  + "  / \\  |\n"
+                  + "      ===\n",
+                };
 
     public HangmanSource() {
-        secretWord = wordList[secret];
-        String[] wordList = list();
+
     }
 
-    public String[] list() throws Exception {
-        while (fileScan.hasNext()) {
-            sb.append(fileScan.nextLine());
-            sb.append("\n");
-        }
-        return sb.toString().split(" ");
+    public String getRandomWord(String[] theList) {
+      String[] wordList = theList;
+      int secret = numgen.nextInt(wordList.length);
+      secretWord = wordList[secret];
+      return secretWord;
     }
 
-    public static void printList() {
-        for (int i = 0; i < 10000; i++) {
-            System.out.println(wordList[i]);
-        }
-    }
+    //public void displayBoard(String theWord, correctLetters, missedLetters) {
+
+    //}
 
 }
