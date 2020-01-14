@@ -23,10 +23,11 @@ public class Hangman {
     System.out.println("H_A_N_G_M_A_N \nby Dakota Flath");
 
     do {
-      secret = hangman.getRandomWord(wordList);
-      secretLen = secret.length();
+      secret = hangman.getWord(wordList);
+      char[] rightLetters = hangman.correctLetters(secret);
+
       while (gameOver == false) {
-        hangman.displayBoard();
+        hangman.displayBoard(secret, rightLetters, );
       }
 
       System.out.print("\nPlay again? ");

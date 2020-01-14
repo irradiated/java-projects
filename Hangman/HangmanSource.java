@@ -48,15 +48,21 @@ public class HangmanSource {
                   + "      ===\n",
                 };
 
-    public HangmanSource() {
+    public HangmanSource() {  }
 
-    }
-
-    public String getRandomWord(String[] theList) {
+    public String getWord(String[] theList) {
       String[] wordList = theList;
       int secret = numgen.nextInt(wordList.length);
       secretWord = wordList[secret];
       return secretWord;
+    }
+
+    public char[] correctLetters(String word) {
+      char[] rightLetters = new char[word.length()];
+      for (int i = 0; i < word.length(); i++) {
+        rightLetters[i] = word.charAt(i);
+      }
+      return rightLetters;
     }
 
     public void displayBoard(String theWord, char[] correctLetters, char[] missedLetters) {
