@@ -23,17 +23,17 @@ public class Hangman {
     }
     String[] wordList = sb.toString().split("\n");
 
-    System.out.println("H_A_N_G_M_A_N \nby Dakota Flath");
+    System.out.println("\n\tH_A_N_G_M_A_N \n");
 
     do {
       secret = hangman.getWord(wordList);
-      char[] wordArray = hangman.secretArray(secret);
+      String[] wordArray = hangman.secretArray(secret);
 
       while (gameOver == false) {
-        char[] correctGuesses = new char[secret.length()];
-        char[] wrongGuesses = new char[pics.length];
-        char[] alreadyGuessed = new char[count];
-        while ((wrongGuesses.length < pics.length) || (correctGuesses.length < secret.length())) {
+        String[] correctGuesses = new String[secret.length()];
+        ArrayList <String> wrongGuesses = new ArrayList <String>();
+        String[] alreadyGuessed = new String[count];
+        while ((wrongGuesses.size() <= pics.length) || (correctGuesses.length <= secret.length())) {
           hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
           guess = hangman.getGuess(alreadyGuessed);
         }

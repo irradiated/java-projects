@@ -60,49 +60,64 @@ public class HangmanSource {
 
     public String[] getPics() { return PICS; }
 
-    public char[] secretArray(String word) {
-      char[] rightLetters = new char[word.length()];
+    public String[] secretArray(String word) {
+      String[] rightLetters = new String[word.length()];
       for (int i = 0; i < word.length(); i++) {
-        rightLetters[i] = word.charAt(i);
+        rightLetters[i] = Character.toString(word.charAt(i));
       }
       return rightLetters;
     }
 
-    public void displayBoard(char[] theWord, char[] correctLetters, char[] missedLetters) {
-      char[] blanks = new char[theWord.length];
-      System.out.println(PICS[missedLetters.length]);
+    public void displayBoard(String[] theWord, String[] correctLetters, ArrayList missedLetters) {
+      String[] blanks = new String[theWord.length];
+      if (missedLetters.size() == 0) {
+        System.out.println(PICS[0]);
+      }
+      else {
+        int numMissed = missedLetters.size();
+        System.out.println(PICS[numMissed]);
+      }
+
       System.out.print("Missed letters: ");
 
-      for (char m : missedLetters) {  System.out.print(m);  }
-      for (int i = 0; i < theWord.length; i++) {  blanks[i] = '_';  }
-      for (int i = 0; i < theWord.length; i++) {
-        if (correctLetters[i].equalsIgnoreCase(theWord[i])) {  blanks[i] = correctLetters[i];  }
+      for (int i = 0; i < missedLetters.size(); i++) {  System.out.print(missedLetters.get(i));  }
+      System.out.print(" ");
+      for (int i = 0; i < theWord.length; i++) {  blanks[i] = "_";  }
+      if (correctLetters[0] != null) {
+        for (int i = 0; i < theWord.length; i++) {
+          if (correctLetters[i].equalsIgnoreCase(theWord[i])) {  blanks[i] = correctLetters[i];  }
+        }
       }
-      for (int i = 0; i < theWord.length; i++) {  System.out.println(blanks[i]); }
+
+      for (int i = 0; i < theWord.length; i++) {  System.out.print(blanks[i]); }
+      System.out.println();
     }
 
-    public String getGuess(char[] alreadyGuessed) {
+    public String getGuess(String[] alreadyGuessed) {
       while (true) {
         System.out.print("Guess a letter: ");
         String guess = scan.nextLine();
-
-        if (guess.length() != 1) {
-          System.out.println("Only single letter guesses are accepted! Please guess again.");
-        }
-
-        else if (((char)guess <= 'a' || (char)guess >= 'z') || ((char)guess <= 'A' || (char)guess >= 'Z')) {
-          System.out.println("That was not a letter. Try again!");
-        }
-
-        else {
-          return guess.toLowerCase();
-        }
+        char guessChar = guess.charAt(0);
 
         for (int i = 0; i < alreadyGuessed.length; i++) {
           if (alreadyGuessed[i] == guess) {
             System.out.println("You have already guessed that letter, try again!");
           }
         }
+
+        if (guess.length() != 1) {
+          System.out.println("Only single letter guesses are accepted! Please guess again.");
+        }
+
+        else if ((guessChar >= 'a' && guessChar <= 'z') || (guessChar >= 'A' && guessChar <= 'Z')) {
+          return guess;
+        }
+
+        else {
+          System.out.println("That was not a letter. Try again!");
+        }
+
+
       }
     }
 }
