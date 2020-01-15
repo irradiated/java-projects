@@ -93,16 +93,18 @@ public class HangmanSource {
       System.out.println();
     }
 
-    public String getGuess(String[] alreadyGuessed) {
+    public String getGuess(ArrayList alreadyGuessed) {
       while (true) {
         System.out.print("Guess a letter: ");
         String guess = scan.nextLine();
         char guessChar = guess.charAt(0);
 
-        for (int i = 0; i < alreadyGuessed.length; i++) {
-          if (alreadyGuessed[i] == guess) {
+        for (int i = 0; i < alreadyGuessed.size(); i++) {
+          if (alreadyGuessed.get(i) == guess) {
             System.out.println("You have already guessed that letter, try again!");
+            break;
           }
+          else {  break;  }
         }
 
         if (guess.length() != 1) {
@@ -116,8 +118,12 @@ public class HangmanSource {
         else {
           System.out.println("That was not a letter. Try again!");
         }
-
-
       }
+    }
+
+    public ArrayList prevGuesses(String lastGuess) {
+      ArrayList <String> alreadyGuessed = new ArrayList <String>();
+      alreadyGuessed.add(lastGuess);
+      return alreadyGuessed;
     }
 }

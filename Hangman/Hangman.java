@@ -27,12 +27,12 @@ public class Hangman {
 
     do {
       secret = hangman.getWord(wordList);
+      guess = "";
       String[] wordArray = hangman.secretArray(secret);
 
       while (gameOver == false) {
         String[] correctGuesses = new String[secret.length()];
-        ArrayList <String> wrongGuesses = new ArrayList <String>();
-        String[] alreadyGuessed = new String[count];
+        ArrayList <String> alreadyGuessed = hangman.prevGuesses(guess);
         while ((wrongGuesses.size() <= pics.length) || (correctGuesses.length <= secret.length())) {
           hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
           guess = hangman.getGuess(alreadyGuessed);
