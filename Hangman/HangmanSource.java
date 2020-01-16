@@ -81,7 +81,7 @@ public class HangmanSource {
       System.out.print("Missed letters: ");
 
       for (int i = 0; i < missedLetters.size(); i++) {  System.out.print(missedLetters.get(i));  }
-      System.out.print(" ");
+      System.out.print("\n");
       for (int i = 0; i < theWord.length; i++) {  blanks[i] = "_";  }
       for (int i = 0; i < correctLetters.size(); i++) {
         if (correctLetters.size() > 0) {
@@ -101,9 +101,11 @@ public class HangmanSource {
         String guess = scan.nextLine();
         char guessChar = guess.charAt(0);
 
+        System.out.println();
+
         for (int i = 0; i < alreadyGuessed.size(); i++) {
           if (((String)alreadyGuessed.get(i)).equalsIgnoreCase(guess)) {
-            System.out.println("You have already guessed that letter, try again!");
+            System.out.println("You have already guessed that letter, try again!\n");
           }
         }
 
