@@ -68,7 +68,7 @@ public class HangmanSource {
       return rightLetters;
     }
 
-    public void displayBoard(String[] theWord, String[] correctLetters, ArrayList missedLetters) {
+    public void displayBoard(String[] theWord, ArrayList correctLetters, ArrayList missedLetters) {
       String[] blanks = new String[theWord.length];
       if (missedLetters.size() == 0) {
         System.out.println(PICS[0]);
@@ -83,12 +83,14 @@ public class HangmanSource {
       for (int i = 0; i < missedLetters.size(); i++) {  System.out.print(missedLetters.get(i));  }
       System.out.print(" ");
       for (int i = 0; i < theWord.length; i++) {  blanks[i] = "_";  }
-      if (correctLetters[0] != null) {
-        for (int i = 0; i < theWord.length; i++) {
-          if (correctLetters[i].equalsIgnoreCase(theWord[i])) {  blanks[i] = correctLetters[i];  }
+      for (int i = 0; i < correctLetters.size(); i++) {
+        if (correctLetters.size() > 0) {
+          String check = (String)(correctLetters.get(i));
+          for (int x = 0; x < theWord.length; x++) {
+            if (check.equalsIgnoreCase(theWord[x])) {  blanks[x] = (String)(correctLetters.get(i));  }
+          }
         }
       }
-
       for (int i = 0; i < theWord.length; i++) {  System.out.print(blanks[i]); }
       System.out.println();
     }
@@ -100,11 +102,9 @@ public class HangmanSource {
         char guessChar = guess.charAt(0);
 
         for (int i = 0; i < alreadyGuessed.size(); i++) {
-          if (alreadyGuessed.get(i) == guess) {
+          if (((String)alreadyGuessed.get(i)).equalsIgnoreCase(guess)) {
             System.out.println("You have already guessed that letter, try again!");
-            break;
           }
-          else {  break;  }
         }
 
         if (guess.length() != 1) {
@@ -119,11 +119,5 @@ public class HangmanSource {
           System.out.println("That was not a letter. Try again!");
         }
       }
-    }
-
-    public ArrayList prevGuesses(String lastGuess) {
-      ArrayList <String> alreadyGuessed = new ArrayList <String>();
-      alreadyGuessed.add(lastGuess);
-      return alreadyGuessed;
     }
 }

@@ -31,11 +31,20 @@ public class Hangman {
       String[] wordArray = hangman.secretArray(secret);
 
       while (gameOver == false) {
-        String[] correctGuesses = new String[secret.length()];
-        ArrayList <String> alreadyGuessed = hangman.prevGuesses(guess);
-        while ((wrongGuesses.size() <= pics.length) || (correctGuesses.length <= secret.length())) {
+        ArrayList <String> correctGuesses = new ArrayList <String>();
+        ArrayList <String> alreadyGuessed = new ArrayList <String>();
+        ArrayList <String> wrongGuesses = new ArrayList <String>();
+
+        while ((wrongGuesses.size() < pics.length) || (correctGuesses.size() <= secret.length())) {
           hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
           guess = hangman.getGuess(alreadyGuessed);
+          alreadyGuessed.add(guess);
+
+          for (int i = 0; i < wordArray.length; i++) {
+            if (guess.equalsIgnoreCase(wordArray[i])) {
+              correctGuesses.add(guess);
+            }
+          }
         }
 
       }
