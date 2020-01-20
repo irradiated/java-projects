@@ -44,7 +44,17 @@ public class Hangman {
       ArrayList <String> alreadyGuessed = new ArrayList <String>();
       ArrayList <String> wrongGuesses = new ArrayList <String>();
 
-      while ((wrongGuesses.size() < (pics.length - 1)) && (correctGuesses.size() < (secret.length() - 1))) {
+      while (true) {
+
+        if (correctGuesses.size() == secret.length()) {
+          System.out.println("You won. The word was: " + secret);
+          break;
+        }
+
+        else if (wrongGuesses.size() == (pics.length - 1)) {
+          System.out.println("You lost.");
+          break;
+        }
 
         hangman.displayBoard(wordArray, correctGuesses, wrongGuesses);
         correct = false;
@@ -69,16 +79,6 @@ public class Hangman {
         if (correct == false) {
           wrongGuesses.add(guess);
         }
-      }
-
-      if (correctGuesses.size() == secret.length()) {
-        System.out.println("You won.");
-        break;
-      }
-
-      else if (wrongGuesses.size() == pics.length) {
-        System.out.println("You lost.");
-        break;
       }
 
       System.out.print("\nPlay again? Yes or No: ");
