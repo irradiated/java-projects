@@ -74,8 +74,7 @@ public class HangmanSource {
         System.out.println(PICS[0]);
       }
       else {
-        int numMissed = missedLetters.size();
-        System.out.println(PICS[numMissed]);
+        System.out.println(PICS[missedLetters.size()]);
       }
 
       System.out.print("Missed letters: ");

@@ -46,12 +46,14 @@ public class Hangman {
 
       while (true) {
 
-        if (correctGuesses.size() == secret.length()) {
+        if (correctGuesses.size() == wordArray.length) {
+          System.out.println(pics[wrongGuesses.size()]);
           System.out.println("You won. The word was: " + secret);
           break;
         }
 
         else if (wrongGuesses.size() == (pics.length - 1)) {
+          System.out.println(pics[6]);
           System.out.println("You lost. The word was: " + secret);
           break;
         }
@@ -85,5 +87,6 @@ public class Hangman {
       playAgain = scan.nextLine();
 
     } while (playAgain.equalsIgnoreCase("yes"));
+    System.out.println("\nThanks for playing HANGMAN!");
   }
 }
