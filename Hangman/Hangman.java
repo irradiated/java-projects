@@ -52,7 +52,7 @@ public class Hangman {
         }
 
         else if (wrongGuesses.size() == (pics.length - 1)) {
-          System.out.println("You lost.");
+          System.out.println("You lost. The word was: " + secret);
           break;
         }
 
