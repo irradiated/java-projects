@@ -9,7 +9,7 @@ public class FileReader {
             sb.append(fileScan.nextLine());
             sb.append("\n");
         }
-        String[] wordList = sb.toString().split(" ");
+        String[] wordList = sb.toString().split("\n");
 
         for (int i = 0; i < wordList.length; i++) {
             System.out.println(wordList[i]);
