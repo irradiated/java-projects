@@ -15,7 +15,6 @@ public class Hangman {
     int count = 0;
     String[] pics = hangman.getPics();
     playAgain = "yes";
-    gameOver = false;
 
     while (fileScan.hasNext()) {
         sb.append(fileScan.nextLine());
