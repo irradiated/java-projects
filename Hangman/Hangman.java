@@ -4,7 +4,7 @@ import java.io.*;
 public class Hangman {
   public static void main(String[] args) throws Exception {
 
-    File file = new File("E:\\coding\\java\\java-projects\\Hangman\\wordlist.txt");
+    File file = new File("./wordlist.txt");
     Scanner fileScan = new Scanner(file);
     Scanner scan = new Scanner(System.in);
     StringBuilder sb = new StringBuilder();

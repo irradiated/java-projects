@@ -1,7 +1,7 @@
 public class FileReader {
     public static void main(String[] args) {
         Random numgen = new Random();
-        File file = new File("E:\\coding\\java\\java-projects\\Hangman\\wordlist.txt");
+        File file = new File("./wordlist.txt");
         Scanner fileScan = new Scanner(file);
         StringBuilder sb = new StringBuilder();
 
@@ -11,7 +11,7 @@ public class FileReader {
         }
         String[] wordList = sb.toString().split(" ");
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < wordList.length; i++) {
             System.out.println(wordList[i]);
         }
     }
