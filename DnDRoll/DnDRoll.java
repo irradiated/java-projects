@@ -2,28 +2,24 @@ import java.util.*;
 
 public class DnDRoll {
   public static void main(String[] args) {
-    String choice, input, howMany;
-    int dieType, howManyInt;
+    String input;
     Scanner scan = new Scanner(System.in);
+    DnDice dice = new DnDice();
 
-    do {
-      System.out.print("How many die would you like to roll? Enter a number, or type 'exit' to leave: ");
-      howMany = scan.next();
-      if (howMany.equalsIgnoreCase("exit")) {
+    System.out.println("Polyhedral Die Roller v1.0 \nWritten by Irradiated");
+    System.out.println("Choose a die [d4, d6, d8, d10, d12, d20], and how many times to roll it, in the format "
+                    + "[3d12, 1d20, etc], or type [exit] to exit the program.\n");
+
+    while (true) {
+      System.out.print("Roll: ");
+      input = scan.next();
+      if (input.equalsIgnoreCase("exit")) {
+        System.out.println("Exiting..");
         break;
       }
-      System.out.print("Choose a die to roll [d4, d6, d8, d10, d12, d20]: ");
-      input = scan.next();
-
-      choice = input.replaceAll("[^0-9.]","");
-      dieType = Integer.parseInt(choice);
-      howManyInt = Integer.parseInt(howMany);
-      DnDice dice = new DnDice(dieType);
-
-      int[] multiRoll = dice.rollArray(howManyInt,dieType);
-      System.out.printf("You rolled %s d%s, and the result is: ", howMany, choice);
-      dice.printArray(multiRoll);
-
-    } while (true);
+      int[] cleanedInput = dice.cleanInput(input);
+      ArrayList roll = dice.roll(cleanedInput[0], cleanedInput[1]);
+      System.out.println("Results of " + input + ": " + dice.toString());
+    }
   }
 }

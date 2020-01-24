@@ -8,15 +8,16 @@ public class Dice {
     public Dice() { }
 
     public Dice(int die) {
-        result = numgen.nextInt(die + 1);
+        result = numgen.nextInt(die) + 1;
     }
 
     public String toString() {
-      resultString = result;
+      resultString = Integer.toString(result);
       return resultString;
     }
 
     public int getResult() {
       return result;
     }
+
 }

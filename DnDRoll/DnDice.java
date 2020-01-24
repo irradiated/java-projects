@@ -17,9 +17,19 @@ public class DnDice {
     }
 
     public String toString() {
+      resultString = "";
       for (int i = 0; i < list.size(); i++) {
         resultString += list.get(i) + " ";
       }
       return resultString;
+    }
+
+    public int[] cleanInput(String input) {
+      String[] cleaning = input.split("d");
+      int[] cleaned = new int[2];
+      for (int i = 0; i < cleaning.length; i++) {
+        cleaned[i] = Integer.parseInt(cleaning[i]);
+      }
+      return cleaned;
     }
 }

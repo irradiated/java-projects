@@ -6,13 +6,14 @@ public class DnDPanel extends JPanel implements MouseListener {
   private JLabel displayLabel;
   private JTextField inputTextField;
   private JButton confirmButton;
+  private Dice dice = new Dice();
 
    public DnDPanel() {
       setPreferredSize (new Dimension(400, 300));
-      setBackground (Color.blue);
+      setBackground (Color.orange);
 
       displayLabel = new JLabel("Choose a die: d4, d6, d8, d10, d12, d20");
-      inputTextField = new JTextField(20);
+      inputTextField = new JTextField(25);
       confirmButton = new JButton("Roll");
 
       add(inputTextField);
@@ -27,8 +28,10 @@ public class DnDPanel extends JPanel implements MouseListener {
    }
 
    public void mouseClicked(MouseEvent e) {
-     String inputname = inputTextField.getText();
-     displayLabel.setText("");
+     String dieType = inputTextField.getText();
+     int dieTypeInt = Integer.parseInt(dieType);
+     Dice roll = new Dice(dieTypeInt);
+     displayLabel.setText("Roll: " + Integer.toString(roll.getResult()));
    }
 
    public void mouseEntered(MouseEvent e) {}
