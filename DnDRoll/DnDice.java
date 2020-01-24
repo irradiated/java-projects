@@ -3,7 +3,7 @@ import java.util.*;
 public class DnDice {
     Random numgen = new Random();
     private int roll;
-    private String resultString = "";
+    private String resultString;
     ArrayList <Integer> list = new ArrayList<Integer>();
 
     public DnDice() {  }
