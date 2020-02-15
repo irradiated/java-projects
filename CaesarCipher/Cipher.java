@@ -67,7 +67,16 @@ public class Cipher {
         if (mode.charAt(0) == 'd') { key = -key; }
 
         for (int i = 0; i < message.length; i++) {
-            message[i] = (char)(message[i] + key);
+            if (i + key > alphabet.length) {
+                message[i] = alphabet[(message[i]) + key - 25];
+            }
+
+            else if (i + key < 1) {
+                message[i] = alphabet[(message[i]) + key + 25];
+            }
+            else {
+                message[i] = alphabet[(message[i]) + key];
+            }
         }
 
         for (char ch: message) {
