@@ -6,10 +6,28 @@ import java.util.*;
 public class Flash {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        int choice0;
+        Sets set = new Set();
 
-        System.out.println("Flash: CLI flashcard builder");
-        System.out.println("Make a choice (e.g. 1): ");
-        System.out.print("1. View set\n2. Create set");
+        while (true) {
+            System.out.println("Flash: CLI flashcard builder");
+            System.out.println("Make a choice (e.g. 1): ");
+            System.out.print("1. View set\n2. Create set");
+            choice0 = scan.nextInt();
+
+            if (choice0 == 1) {
+                sets.show
+                System.out.print("1. View cards\n2. Add card");
+                
+            }
+
+            else if (choice0 == 2) {
+
+            }
+
+            else {  break;  }
+        }
+        
         
         System.out.print("1. View cards\n2. Add card");
     }
