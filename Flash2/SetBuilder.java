@@ -15,6 +15,10 @@ public class SetBuilder {
         cards = new ArrayList<Card>();
     }
 
+    public SetBuilder(ArrayList<Card> cardList) {
+        cards = cardList;
+    }
+
     public void addList(Card addition) {
         cards.add(addition);
         Collections.sort(cards);
@@ -22,10 +26,19 @@ public class SetBuilder {
 
     public void removeList(Card removal) {
         cards.remove(removal);
+        Collections.sort(cards);
     }
 
     public Card getCard(int index) {
         return cards.get(index);
+    }
+
+    public void saveSet() {
+
+    }
+
+    public void delSet() {
+        
     }
 
     

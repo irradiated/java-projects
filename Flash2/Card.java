@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Card implements Comparable {
+public class Card implements Comparable<Card> {
   String question, answer, title;
   Scanner scan = new Scanner(System.in);
 
@@ -58,8 +58,10 @@ public class Card implements Comparable {
     return title;
   }
 
-  public int compareTo(Object obj) {
-    return 0;
+  public int compareTo(Card obj) {
+    int result = this.title.compareTo(obj.title);
+     //Sorting by first name if last name is same d
+     return result == 0 ? this.title.compareTo(obj.title) : result;
 
   }
 
