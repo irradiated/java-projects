@@ -14,6 +14,10 @@ public class Set {
         this.name = name;
     }
 
+    public Sets() {
+        System.out.println("Which set would you like to view?");
+    }
+
     public void addCard(FlashCard card) {
         set.add(card);
     }
