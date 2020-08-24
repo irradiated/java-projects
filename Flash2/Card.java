@@ -60,12 +60,10 @@ public class Card implements Comparable<Card> {
 
   public int compareTo(Card obj) {
     int result = this.title.compareTo(obj.title);
-     //Sorting by first name if last name is same d
-     return result == 0 ? this.title.compareTo(obj.title) : result;
-
+    return result == 0 ? this.title.compareTo(obj.title) : result;
   }
 
   public String toString() {
-    return "T: " + title + "\nQ: " + question + "\nA: " + answer;
+    return "Title: " + title + "\nQuestion: " + question + "\nAnswer: " + answer;
   }
 }

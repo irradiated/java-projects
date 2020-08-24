@@ -10,6 +10,7 @@ import java.util.*;
 public class SetBuilder {
     Card card = new Card();
     ArrayList<Card> cards;
+    FileOutputStream fileOutputStream;
 
     public SetBuilder() {
         cards = new ArrayList<Card>();
@@ -33,11 +34,27 @@ public class SetBuilder {
         return cards.get(index);
     }
 
-    public void saveSet() {
+    public void saveSet(String setTitle) {
+        String path = "./" + setTitle + ".txt";
+        File setFile = new File(path);
+        try {
+            
+            if (setFile.createNewFile()) {
+                System.out.println("New set created: " + setFile.getName());
+            } else {
+                fileOutputStream = new FileOutputStream(setFile);
+                ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+                output.writeObject(cards);
+            }
 
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 
-    public void delSet() {
+    public void delSet(String setTitle) {
         
     }
 
