@@ -8,30 +8,33 @@ import java.io.*;
 import java.util.*;
 
 public class SetBuilder {
-    Card card = new Card();
+    
     ArrayList<Card> cards;
     FileOutputStream fileOutputStream;
+    ObjectInputStream input;
+    ObjectOutputStream output;
 
     public SetBuilder() {
         cards = new ArrayList<Card>();
     }
 
-    public SetBuilder(ArrayList<Card> cardList) {
-        cards = cardList;
+    public SetBuilder(ArrayList<Card> cards) {
+        cards = this.cards;
     }
 
-    public void addList(Card addition) {
-        cards.add(addition);
-        Collections.sort(cards);
-    }
-
-    public void removeList(Card removal) {
-        cards.remove(removal);
-        Collections.sort(cards);
-    }
-
-    public Card getCard(int index) {
-        return cards.get(index);
+    public void loadSet(String setTitle) {
+        String path = "./" + setTitle + ".txt";
+        File setFile = new File(path);
+        try {
+            FileInputStream fileInputStream = new FileInputStream(setFile);
+            input = new ObjectInputStream(fileInputStream);
+            while (input.read() != -1) {
+                cards.add((Card)input.readObject());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
     public void saveSet(String setTitle) {
@@ -41,13 +44,16 @@ public class SetBuilder {
             
             if (setFile.createNewFile()) {
                 System.out.println("New set created: " + setFile.getName());
-            } else {
                 fileOutputStream = new FileOutputStream(setFile);
-                ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+                output = new ObjectOutputStream(fileOutputStream);
+                output.writeObject(cards);
+            } else {
+                System.out.println("Set updated: " + setFile.getName());
+                fileOutputStream = new FileOutputStream(setFile);
+                output = new ObjectOutputStream(fileOutputStream);
                 output.writeObject(cards);
             }
-
-            
+   
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +61,17 @@ public class SetBuilder {
     }
 
     public void delSet(String setTitle) {
-        
+        String path = "./" + setTitle + ".txt";
+        File setFile = new File(path);
+        try {
+            if (setFile.delete()) {
+                System.out.println(setFile.getName() + " deleted.");
+            } else {
+                System.out.println("Deletion failed. Does the set exist?");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     
