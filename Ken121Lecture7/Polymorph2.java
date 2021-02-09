@@ -1,5 +1,5 @@
 public class Polymorph2 {
-    public static void main() {
+    public static void main(String[] args) {
         Cat pet1 = new Cat("Snowball");
         Dog pet2 = new Dog("Santa's little helper");
 
@@ -22,6 +22,9 @@ public class Polymorph2 {
         if (a instanceof Dog) {
             System.out.println(", the dog");
         }
+
+        System.out.println(a.eats());
+
     }
 }
 
@@ -45,6 +48,9 @@ abstract class Animal {
         }
         return false;
     }
+
+    public abstract String eats();
+
 }
 
 class Cat extends Animal {
@@ -56,11 +62,19 @@ class Cat extends Animal {
     public void talk() {
         System.out.println("Meow");
     }
+
+    public String eats() {
+        return "Mice";
+    }
 }
 
 class Dog extends Animal {
     public Dog(String name) {
         super(name);
         System.out.println("Dog Constructor");
+    }
+
+    public String eats() {
+        return "Steak";
     }
 }
