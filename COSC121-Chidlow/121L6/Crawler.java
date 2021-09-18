@@ -4,7 +4,8 @@ import java.net.URL;
 
 public class Crawler {
     public static void main(String[] args) {
-        crawler("http://people.okanagan.bc.ca/akennedy");
+        //crawler("http://people.okanagan.bc.ca/akennedy");
+        crawler("https://chambermusickelowna.ca/");
     }
 
     public static void crawler(String startingURL) {
@@ -38,7 +39,7 @@ public class Crawler {
 
             while (input.hasNext()) {
                 String line = input.nextLine();
-                current = line.indexOf("http:", current);
+                current = line.indexOf("https:", current);
 
                 while (current > 0) {
                     int endIndex = line.indexOf("\"", current);
@@ -46,7 +47,7 @@ public class Crawler {
                     //(endIndex > 0 && endIndex > current)
                     if (endIndex > 0) {
                         list.add(line.substring(current, endIndex));
-                        current = line.indexOf("http:", endIndex);
+                        current = line.indexOf("https:", endIndex);
                     } else {
                         current = -1;
                     }
